@@ -1,0 +1,39 @@
+<script src="https://koda.nu/simple.js">
+
+  function cube(cx=0,cy=0,s=100,r=204,g=102,b=0){
+    let width = 1.7 * s
+    
+    function rgbfy(clr){
+      let n = clr
+      if (n < 0)  {
+          n = 0
+      }else if (n > 215) {
+          n = 215
+      } return n
+    }
+    
+    let newR = rgbfy(r)
+    let newG = rgbfy(g)
+    let newB = rgbfy(b)
+    
+    let clr1 = mixColor(newR+20,newG+20,newB+20);
+    let clr2 = mixColor(newR,newG,newB);
+    let clr3 = mixColor(newR+40,newG+40,newB+40)
+    
+    
+    // Side1
+    triangle(cx,cy + s/2,cx + width,cy + s/2,cx + width/2, cy,clr1);
+  	triangle(cx,cy + s/2,cx + width,cy + s/2,cx + width/2, cy + s,clr1);
+    
+    // Side3
+    triangle(cx,cy + s/2,cx + width/2,cy + s*2,cx,cy + s*1.5,clr3);
+    triangle(cx,cy + s/2,cx + width/2,cy + s*2,cx + width/2, cy + s,clr3);
+    
+    // Side2
+    triangle(cx+width,cy + s/2,cx + width/2,cy + s*2,cx + width,cy + s*1.5,clr2);
+    triangle(cx+width,cy + s/2,cx + width/2,cy + s*2,cx + width/2, cy + s,clr2);
+  };
+
+  cube(0,0,500,255,255,255);
+
+</script>

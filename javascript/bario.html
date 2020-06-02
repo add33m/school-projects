@@ -1,0 +1,72 @@
+<script src="https://koda.nu/simple.js">
+
+  // Char Properties
+  var url = "http://supermariobroscrossover.com/data/xengallery/25/25692-c83f8b332b8b995a0cd51d2b46398c4b.jpg?1422859242";
+  //size = 300*300
+  
+  var posX = 200;
+  var posY = 50;
+  var velX = 0;
+  var velY = 0;
+  
+  scale(.25,.25);
+  
+  // On frame update
+  function update(){
+    clearScreen();
+  
+    // Process velX
+    if (keyboard["d"] && velX < 20){
+ 
+      // Add speed to positive X
+      velX += 4;
+      
+    }else if (keyboard["a"] && velX > -20){
+    
+      // Add speed to positive X
+      velX -= 4;
+    
+    }else{
+      
+      // Slow down & limit velocity
+      if (velX > 0 && keyboard["d"] == false){velX -= 2}
+      else if (velX < 0 && keyboard["a"] == false){velX += 2}
+      
+      if (velX > 20){velX = 20}
+      else if (velX < -20){velX = -20}
+    }
+    
+    // Process velY
+    if (keyboard["s"] && velY < 20){
+ 
+      // Add speed to positive Y
+      velY += 4;
+      
+    }else if (keyboard["w"] && velY > -20){
+    
+      // Add speed to positive Y
+      velY -= 4;
+    
+    }else{
+      
+      // Slow down & limit velocity
+      if (velY > 0 && keyboard["s"] == false){velY = velY - 2}
+      else if (velY < 0 && keyboard["w"] == false){velY = velY + 2}
+      
+      if (velY > 20){velY = 20}
+      else if (velY < -20){velY = -20}
+    }
+  	
+    // Draw character
+    posX = posX + velX;
+	  posY = posY + velY;
+
+    
+    picture(posX,posY,url);
+    
+    // FPS Counter
+  	text(0,50,50,updatesPerSecond + " fps","black");
+  }
+
+
+</script>

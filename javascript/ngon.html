@@ -1,0 +1,30 @@
+<script src="https://koda.nu/simple.js">
+
+  var ctx = document.getElementById('canvas').getContext('2d');
+  
+  function rad(deg) {
+    return deg * Math.PI / 180;
+  }
+  
+  function nGon(x=0,y=0,radius=20,sides=6,color="red",angle=0) {
+    ctx.beginPath();
+    ctx.moveTo (
+      x + radius * Math.cos(rad(angle - 90) + 2 * Math.PI / sides), 
+      y + radius * Math.sin(rad(angle - 90) + 2 * Math.PI / sides)
+    );          
+
+    for (let i = 1; i <= sides;i += 1) {
+      ctx.lineTo(
+        x + radius * Math.cos(rad(angle - 90) + i * 2 * Math.PI / sides), 
+        y + radius * Math.sin(rad(angle - 90) + i * 2 * Math.PI / sides)        
+      );
+    }
+	
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+  }
+  
+  nGon(100,100,50,4,"red",45);
+
+</script>
